@@ -1,7 +1,7 @@
 var log = console.log.bind(console); //bind our console to a variable
 var version = "0.0.3";
 var cacheName = "currency-converter";
-var cache = cacheName + "-" + version;
+var cache = `${cacheName}-${version}`;
 var filesToCache = [
   "js/app.js",
   "index.html",
@@ -57,7 +57,7 @@ self.addEventListener("activate", function(event) {
         //run everything in parallel using Promise.all()
         Promise.all(
           keyList.map(function(key) {
-            if (key !== cacheName) {
+            if (key !== cache) {
               log("[ServiceWorker] Removing old cache ", key);
               //if key doesn`t matches with present key
               return caches.delete(key);
